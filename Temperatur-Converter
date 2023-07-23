@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    /* Add some basic styling to the page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background:brown;
+      box-shadow: 4px;
+      
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    select {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+    
+    button {
+      padding: 5px 10px;
+    }
+    
+    #result {
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      padding-right: 10px;
+      font-weight: bold;
+      background:brown;
+      box-shadow:5PX 10PX;
+      color:yellowgreen;
+    }
+    .Temp{
+        
+         background: beige;
+         padding-left: 500px;
+         padding-top: 100px;
+         padding-right: 500px;
+         padding-bottom: 300px;
+         box-shadow:  5px 10px yellow;
+        
+         
+    }
+    h1{
+        text-align: center;
+        color:white;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+  <div class="Temp">
+  
+  <label for="temperature"><b>Temperature:</b></label>
+  <input type="text" id="temperature" placeholder="Enter temperature" required>
+  
+  <label for="unit"><b>Unit:</b></label>
+  <select id="unit">
+    <option value="celsius">Celsius</option>
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="kelvin">Kelvin</option>
+  </select>
+  
+  <button onclick="convertTemperature()">Convert</button>
+  <div id="result"></div>
+  </div>
+  
+  
+  <script>
+    function convertTemperature() {
+      var temperatureInput = document.getElementById("temperature").value;
+      var unitInput = document.getElementById("unit").value;
+      
+      // Validate that the temperature input is a number
+      if (isNaN(temperatureInput)) {
+        alert("Please enter a valid number for the temperature.");
+        return;
+      }
+      
+      var temperature = parseFloat(temperatureInput);
+      var result = "";
+      
+      if (unitInput === "celsius") {
+        // Convert Celsius to Fahrenheit and Kelvin
+        var fahrenheit = (temperature * 9/5) + 32;
+        var kelvin = temperature + 273.15;
+        
+        result = temperature + "°C = " + fahrenheit.toFixed(2) + "°F = " + kelvin.toFixed(2) + "K";
+      } else if (unitInput === "fahrenheit") {
+        // Convert Fahrenheit to Celsius and Kelvin
+        var celsius = (temperature - 32) * 5/9;
+        var kelvin = (temperature - 32) * 5/9 + 273.15;
+        
+        result = temperature + "°F = " + celsius.toFixed(2) + "°C = " + kelvin.toFixed(2) + "K";
+      } else if (unitInput === "kelvin") {
+        // Convert Kelvin to Celsius and Fahrenheit
+        var celsius = temperature - 273.15;
+        var fahrenheit = (temperature - 273.15) * 9/5 + 32;
+        
+        result = temperature + "K = " + celsius.toFixed(2) + "°C = " + fahrenheit.toFixed(2) + "°F";
+      }
+      
+      document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</body>
+</html>
